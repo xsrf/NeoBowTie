@@ -181,10 +181,12 @@ long readVcc() {
 
 void showChargingLevel() {
   long vcc = readVcc(); // Vcc in millivolts
-  if(vcc >= 3200) {
-    vcc = vcc - 3200; // 3200-4200 -> 0-1000
+  const long min = 2700;
+  const long max = 3300; // 3.3V on PCB Version, 4.2V on Prototype
+  if(vcc >= min) {
+    vcc = vcc - min; // 2700-3300 -> 0-600
     vcc = vcc*NUM_LEDS; 
-    vcc = vcc/1000; // 0-15
+    vcc = vcc/(max-min); // 0-17
     if(vcc > NUM_LEDS) vcc = NUM_LEDS; // clamp to NUM_LEDS
   } else {
     vcc = 0;
