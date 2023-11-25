@@ -1,6 +1,6 @@
 # NeoBowTie
 
-<img src="res/pcb_back.svg">
+<img src="res/pcb_top.svg">
 
 ## Features
 - Bowtie style PCB
