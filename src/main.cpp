@@ -108,6 +108,16 @@ void white_sparkles_fade() {
   }
 }
 
+void golden_sparkles_fade() {
+  for(uint8_t i=0; i<NUM_LEDS; i++) {
+    if(getRandomInt(SUBMODE+3)==0 && strip.getPixelColor(i)== strip.Color(0, 0, 0) ) {
+      strip.setPixelColor(i, strip.Color(255, 160, 0));
+    } else {
+      strip.setPixelColor(i, fadeBlack(strip.getPixelColor(i)));      
+    }
+  }
+}
+
 void random_colors() {
   if((GLOBAL_CNT % (2 + SUBMODE)) == 0) {
     strip.setPixelColor( getRandomPixel() , strip.ColorHSV(getRandomInt(255)<<8,255,255) );
@@ -247,6 +257,7 @@ void loop() {
     case __COUNTER__: ani_rainbow(7); break;
     case __COUNTER__: ani_solid_color(); break;
     case __COUNTER__: white_sparkles_fade(); break;
+    case __COUNTER__: golden_sparkles_fade(); break;
     case __COUNTER__: random_colors(); break;
     default: MODE = 0; break;
   }  
